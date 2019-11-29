@@ -1,0 +1,89 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Message {
+	
+	public String serialize(Identity identity) {
+		
+		String tmp = new String("{\"");
+		List<String> arrayKey = identity.getListKey();
+		List<String> arrayValue = identity.getListValue();
+		
+		tmp += arrayKey.get(0) + "\":\"" +arrayValue.get(0);		
+		for (int i= 1; i< arrayValue.size(); i++) 
+		{ 
+		    tmp += "\",\"" + arrayKey.get(i) + "\":\"" +arrayValue.get(i)  ;
+		}
+		tmp += "\"}";
+		return tmp;		
+	}
+	
+	public Identity deserialize(String message) {
+	
+		Identity identity = null;		
+		String[] listString;
+		String lastName = null, firstName = null, age = null, gender = null, ssn = null, phone = null;
+	
+		
+		System.out.println(message);
+		if(message.indexOf("{") != -1) {
+			if(message.indexOf("}") != -1) {
+				message = message.replace("{", "");
+				message = message.replace("}", "");
+				message = message.replace("\"", "");
+				listString = message.split(",");
+				
+				
+				for(int i =0; i< listString.length; i++)
+				{
+					
+					if(listString[i].indexOf("lastName")!=-1)
+					{
+						lastName = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					if(listString[i].indexOf("firstName")!=-1)
+					{
+						firstName = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					if(listString[i].indexOf("age")!=-1)
+					{
+						age = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					if(listString[i].indexOf("gender")!=-1)
+					{
+						gender = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					if(listString[i].indexOf("ssn")!=-1)
+					{
+						ssn = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					if(listString[i].indexOf("phone")!=-1)
+					{
+						phone = listString[i].substring(1+listString[i].indexOf(":"));
+					}
+					
+				}
+			}
+		}
+		
+		if(!firstName.isEmpty())
+		{
+			if(!lastName.isEmpty())
+			{
+				if(!age.isEmpty())
+				{
+					if(!gender.isEmpty())
+					{
+						identity = new Identity(lastName,firstName,age,gender);
+						if(!phone.equals("")) identity.setPhone(phone);
+						if(!ssn.equals("")) identity.setSsn(ssn);
+					}
+				}
+			}
+		}
+			
+		
+		return identity;		
+	}
+
+}

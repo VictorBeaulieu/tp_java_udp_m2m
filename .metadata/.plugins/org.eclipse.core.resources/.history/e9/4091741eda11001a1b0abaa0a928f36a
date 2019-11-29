@@ -1,0 +1,9 @@
+import java.io.*;
+import java.net.*;
+
+public class sampleTest {
+	public static void main(String args[]) throws Exception
+	{
+		System.out.println("toto coucou");		
+	}
+}

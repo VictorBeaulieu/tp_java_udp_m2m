@@ -1,0 +1,83 @@
+import java.io.*;
+import java.net.*;
+
+public class sampleTest {
+	public static void main(String args[]) throws Exception
+	{
+		Message msg = new Message();
+	/*
+		System.out.println("test 1");
+		// data serialized
+		String tmp= "{\"lastName\":\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\"}";
+		Identity identity = msg.deserialize(tmp) ;
+		// print all elements from identity
+		System.out.println(identity.toString());
+		System.out.println();
+		System.out.println();
+		
+		// reserialize identy into string
+		String tmp2 = msg.serialize(identity);
+		System.out.println(tmp);
+		System.out.println(tmp2);
+		// check if after deserialize to serialize is the same
+		System.out.println(tmp.equals(tmp2));
+		
+		System.out.println();
+		System.out.println();
+		System.out.println("test 2");
+		// data serialized
+		String tmp3= "{\"lastName\":\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\",\"phone\":\"0645181817\"}";
+		Identity identity2 = msg.deserialize(tmp3) ;
+		// print all elements from identity
+		System.out.println(identity2.toString());
+		System.out.println();
+		System.out.println();
+		
+		// reserialize identy into string
+		String tmp4 = msg.serialize(identity2);
+		System.out.println(tmp3);
+		System.out.println(tmp4);
+		// check if after deserialize to serialize is the same
+		System.out.println(tmp3.equals(tmp4));
+		
+		// test with identity objet
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("test 3");
+		
+		Identity identity3 = new Identity("beaulieu","theo","28","male","666","0164787170");
+		String tmp5 = msg.serialize(identity3);
+		System.out.println(identity3.toString());
+		System.out.println(tmp5);
+		
+		Identity identity4 = msg.deserialize(tmp5);	
+		System.out.println(identity4.toString());
+		System.out.println(identity4.toString().equals(identity3.toString()));
+		
+		System.out.println();
+		System.out.println();
+		System.out.println("test 4");
+		// data serialized
+		String tmp6= "{\"lastName\":\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\",\\\"pofd\\\":\\\"dff\\\",\"phone\":\"0645181817\"}";
+		System.out.println(tmp6);
+		Identity identity5 = msg.deserialize(tmp6) ;
+		// print all elements from identity
+		if(identity5 == null) System.out.println(true);
+		else System.out.println(false);*/
+		
+		
+		Identity identity = new Identity("beaulieu","theo","28","male","666");
+		String tmp2= "{\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\",\"phone\":\"0645181817\"}";
+		System.out.println(identity.getListKey().toString());
+		System.out.println(identity.getListValue().toString());
+		String tmp = msg.serialize(identity.getListKey(), identity.getListValue());
+		System.out.println(tmp);
+		if(msg.deserialize(tmp)==0) {
+			System.out.println(msg.getArrayKey());
+			System.out.println(msg.getArrayValue());
+		}
+		System.out.println(msg.deserialize(tmp2));
+		
+	}
+}

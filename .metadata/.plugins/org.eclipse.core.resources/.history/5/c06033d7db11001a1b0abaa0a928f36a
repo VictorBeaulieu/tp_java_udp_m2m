@@ -1,0 +1,39 @@
+import java.io.*;
+import java.net.*;
+
+public class sampleTest {
+	public static void main(String args[]) throws Exception
+	{
+		Message msg = new Message();
+	
+		// data serialized
+		String tmp= "{\"lastName\":\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\"}";
+		Identity identity = msg.deserialize(tmp) ;
+		// print all elements from identity
+		System.out.println(identity.toString());
+		System.out.println();
+		System.out.println();
+		
+		// reserialize identy into string
+		String tmp2 = msg.serialize(identity);
+		System.out.println(tmp);
+		System.out.println(tmp2);
+		// check if after deserialize to serialize is the same
+		System.out.println(tmp.equals(tmp2));
+		
+		// data serialized
+		String tmp3= "{\"lastName\":\"beaulieu\",\"firstName\":\"victor\",\"age\":\"24\",\"gender\":\"male\",\"phone\":\"0645181817\"}";
+		Identity identity2 = msg.deserialize(tmp3) ;
+		// print all elements from identity
+		System.out.println(identity2.toString());
+		System.out.println();
+		System.out.println();
+		
+		// reserialize identy into string
+		String tmp4 = msg.serialize(identity2);
+		System.out.println(tmp3);
+		System.out.println(tmp4);
+		// check if after deserialize to serialize is the same
+		System.out.println(tmp3.equals(tmp4));
+	}
+}
